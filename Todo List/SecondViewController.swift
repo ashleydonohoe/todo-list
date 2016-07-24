@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+// Make screen with label, textfield, and add button
+
 class SecondViewController: UIViewController {
 
     override func viewDidLoad() {
