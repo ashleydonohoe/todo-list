@@ -54,9 +54,11 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+        
+        if editingStyle == UITableViewCellEditingStyle.delete {
             items.remove(at: indexPath.row)
-            table.deleteRows(at: [indexPath], with: .fade)
+            table.reloadData()
+            UserDefaults.standard.set(items, forKey: "items")
         }
     }
 }
