@@ -25,11 +25,13 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             todoItems = todoItemObject as! [String]
         } else {
             UserDefaults.standard.set(todoItems, forKey: "items")
+            todoItems = UserDefaults.standard.object(forKey: "items") as! [String]
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         // Reload table data
+        UserDefaults.standard.synchronize()
         table.reloadData()
     }
 

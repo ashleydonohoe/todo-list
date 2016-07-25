@@ -11,7 +11,8 @@ import UIKit
 
 // Make screen with label, textfield, and add button
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UITextFieldDelegate {
+    @IBOutlet weak var addItemTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,5 +28,25 @@ class SecondViewController: UIViewController {
     
     // Clear textfield upon adding the item to list
 
+    @IBAction func addItem(_ sender: AnyObject) {
+//        if addItemTextField.text != nil {
+//                var listItems = UserDefaults.standard.object(forKey: "items") as! [String]
+//                print(listItems)
+//                listItems.append(addItemTextField.text!)
+//                UserDefaults.standard.synchronize()
+//                addItemTextField.text = ""
+//            }
+        }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
 }
 
