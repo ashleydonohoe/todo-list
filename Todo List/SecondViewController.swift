@@ -29,14 +29,19 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     // Clear textfield upon adding the item to list
 
     @IBAction func addItem(_ sender: AnyObject) {
-//        if addItemTextField.text != nil {
-//                var listItems = UserDefaults.standard.object(forKey: "items") as! [String]
-//                print(listItems)
-//                listItems.append(addItemTextField.text!)
-//                UserDefaults.standard.synchronize()
-//                addItemTextField.text = ""
-//            }
+        let itemsObject = UserDefaults.standard.object(forKey: "items")
+        var items: [String]
+        
+        if let tempItems = itemsObject as? [String] {
+            items = tempItems
+            items.append(addItemTextField.text!)
+        } else {
+            items = [addItemTextField.text!]
         }
+        
+        UserDefaults.standard.set(items, forKey: "items")
+        addItemTextField.text = ""
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
