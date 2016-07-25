@@ -2,7 +2,7 @@
 //  SecondViewController.swift
 //  Todo List
 //
-//  Created by Gabriele on 7/24/16.
+//  Created by Ashley Donohoe on 7/24/16.
 //  Copyright © 2016 Ashley Donohoe. All rights reserved.
 //
 
@@ -16,17 +16,11 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-    // Add functions to hide keyboard for touchesBegan and editing ended to resign first responder
-    
-    // Clear textfield upon adding the item to list
 
     @IBAction func addItem(_ sender: AnyObject) {
         let itemsObject = UserDefaults.standard.object(forKey: "items")
@@ -51,7 +45,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
     
 }
 

@@ -2,14 +2,12 @@
 //  FirstViewController.swift
 //  Todo List
 //
-//  Created by Gabriele on 7/24/16.
+//  Created by Ashley Donohoe on 7/24/16.
 //  Copyright © 2016 Ashley Donohoe. All rights reserved.
 //
 
 import UIKit
 
-
-// Make a tableview that will show all the todos
 
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -23,7 +21,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        // Reload table data
         let itemsObject = UserDefaults.standard.object(forKey: "items")
         
         if let tempItems = itemsObject as? [String] {
@@ -34,7 +31,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,8 +43,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
 
-
-    // Add ability to delete item upon swipe, from both table and the appdata itself
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
