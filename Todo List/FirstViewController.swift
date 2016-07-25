@@ -20,17 +20,15 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // Reload table data
         let itemsObject = UserDefaults.standard.object(forKey: "items")
         
         if let tempItems = itemsObject as? [String] {
             items = tempItems
         }
-
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        // Reload table data
-        UserDefaults.standard.synchronize()
         table.reloadData()
     }
 
