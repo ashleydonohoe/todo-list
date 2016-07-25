@@ -13,11 +13,24 @@ import UIKit
 
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let testarray = ["1", "2", "3"]
+    @IBOutlet weak var table: UITableView!
+    
+    var todoItems = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        if let todoItemObject = UserDefaults.standard.object(forKey: "items") as? NSArray {
+            todoItems = todoItemObject as! [String]
+        } else {
+            UserDefaults.standard.set(todoItems, forKey: "items")
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // Reload table data
+        table.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,15 +39,26 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return testarray.count
+        return todoItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = testarray[indexPath.row]
+        cell.textLabel?.text = todoItems[indexPath.row]
         return cell
     }
 
 
+    // Add ability to delete item upon swipe, from both table and the appdata itself
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            todoItems.remove(at: indexPath.row)
+            table.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 }
 

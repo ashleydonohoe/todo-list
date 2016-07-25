@@ -23,6 +23,9 @@ class SecondViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // Add functions to hide keyboard for touchesBegan and editing ended to resign first responder
+    
+    // Clear textfield upon adding the item to list
 
 }
 
